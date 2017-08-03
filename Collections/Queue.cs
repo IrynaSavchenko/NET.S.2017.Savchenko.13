@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 namespace Collections
 {
+    /// <summary>
+    /// Works with the Queue structure
+    /// </summary>
+    /// <typeparam name="T">Type of elements in the queue</typeparam>
     public class Queue<T> : IEnumerable<T>
     {
         private const int DefaultSize = 100;
@@ -13,19 +17,37 @@ namespace Collections
         private int head;
         private int tail;
 
+        #region Constructors
+
+        /// <summary>
+        /// Initializes the queue with a default size
+        /// </summary>
         public Queue() : this(DefaultSize) { }
 
+        /// <summary>
+        /// Initializes the queue with the specified size
+        /// </summary>
+        /// <param name="size">Queue size</param>
         public Queue(int size)
         {
             elements = new T[size];
         }
 
+        #endregion
+
+        /// <summary>
+        /// Current number of elements in the queue
+        /// </summary>
         public int Count { get; private set; }
 
+        /// <summary>
+        /// Adds the element to the queue
+        /// </summary>
+        /// <param name="item">Element to add</param>
         public void Enqueue(T item)
         {
             if (ReferenceEquals(item, null))
-                throw new ArgumentNullException($"{nameof(item)} cannot be null");
+                throw new ArgumentNullException($"{nameof(item)} cannot be null!");
 
             if (Count == elements.Length) Resize();
 
@@ -36,6 +58,10 @@ namespace Collections
             Count++;
         }
 
+        /// <summary>
+        /// Removes an element from the beginning of the queue
+        /// </summary>
+        /// <returns></returns>
         public T Dequeue()
         {
             if (Count == 0)
@@ -49,6 +75,10 @@ namespace Collections
             return result;
         }
 
+        /// <summary>
+        /// Returns a queue enumerator
+        /// </summary>
+        /// <returns>Queue enumerator</returns>
         public IEnumerator<T> GetEnumerator() => new QueueEnumerator<T>(this);
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

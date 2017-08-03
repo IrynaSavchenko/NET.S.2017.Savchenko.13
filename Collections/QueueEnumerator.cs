@@ -16,7 +16,6 @@ namespace Collections
         {
             this.queue = queue;
             currentIndex = EmptyIndex;
-
         }
 
         public T Current
@@ -32,10 +31,7 @@ namespace Collections
 
         object IEnumerator.Current => Current;
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+        public void Dispose() { }
 
         public bool MoveNext() => ++currentIndex < queue.Count;
 
