@@ -12,12 +12,19 @@ namespace Collections
         private Queue<T> queue;
         private int currentIndex;
 
+        /// <summary>
+        /// Initializes a queue enumerator
+        /// </summary>
+        /// <param name="queue"></param>
         public QueueEnumerator(Queue<T> queue)
         {
             this.queue = queue;
             currentIndex = EmptyIndex;
         }
 
+        /// <summary>
+        /// Returns the current element
+        /// </summary>
         public T Current
         {
             get
@@ -33,6 +40,10 @@ namespace Collections
 
         public void Dispose() { }
 
+        /// <summary>
+        /// Checks if it is possible to move to the next element
+        /// </summary>
+        /// <returns>True if the current element is not the last one, false otherwise</returns>
         public bool MoveNext() => ++currentIndex < queue.Count;
 
         public void Reset() => throw new NotSupportedException();
